@@ -2,7 +2,7 @@
 
 body {
 font-family: 'mplus';
-font-size:1em;
+font-size:1rem;
 margin:0;
 
 }
@@ -12,11 +12,18 @@ margin:0;
 }
 .headerearea{
 	display: block;
-	width: 100vw;
-	height: 20vh;
-	background-color:aqua;
+	width: 98.75vw;
+	height: 10vh;
+	background-color: #333;
+	margin:0;
 }
 
+h1 {
+	display: block ;
+	text-align: center;
+}
+
+/* カート表示　カート表示　カート表示　カート表示　カート表示*/
 .item_wrap{
 	display: inline-block;
 	width: 100vw;
@@ -41,8 +48,8 @@ margin:0;
 }
 .item_img img{
 	display: inline;
-	width: 20vh;
-	height: 20vh;
+	width: 23vw;
+	height: auto;
 	margin:0 0 15vh 0;
 	
 }
@@ -53,7 +60,7 @@ margin:0;
 	text-align: center;
 }
 .item_price{
-	display: iblock;
+	display: block;
 	margin:5vh auto 0 auto;
 	text-align: center;
 }
@@ -74,13 +81,145 @@ item_alltotal{
 	text-align: center;
 }
 
+/* カート表示　カート表示　カート表示　カート表示　カート表示*/
 
-.footerarea{
+/* 新規商品登録画面　itemManage.java*/
+
+.manage_wrap {
 	display: inline-block;
 	width: 100vw;
+	height: 50vh;
+	text-align: left;
+	
+}
+.manage_title {
+	display: inline-block;
+	width: 20vw;
+	height: 25vh;
+	margin:15vh 0 0 30vw;
+	float:left;
+}
+.manage_form {
+	display: inline-block;
+	width: 40vw;
+	height: 25vh;
+	text-align: left;
+	margin:16vh 0 5vh 0;
+	
+}
+
+/* 新規商品登録画面　itemManage.java*/
+.ma_category, .ma_name, .ma_price, .ma_quantity{
+	margin:1vh 0 1.15vh 0;
+}
+.ma_picture {
+	margin:5vh 0 0 0;
+}
+input[type="number"] {
+	margin:1.5vh 0 0 0;
+}
+
+input[type="text"] {
+	margin:1.5vh 0 0 0;
+}
+
+textarea {
+	margin:1.5vh 0 0 0;
+}
+
+input[type="file"] {
+	display: none;
+}
+.input_botton {
+	padding: 0.5vh;
+	color:rgb(0, 255, 255);
+	background-color:rgb(254, 255, 255,0);
+	cursor: pointer;
+	margin:1.5vh 0 0 0;
+}
+
+input[value="CONFIRM"] {
+	display: block;
+	margin:auto;
+}
+#ID001 img {
+	display: inline;
+	width: 23vw;
+	height: auto;
+	margin: 1vw;
+}
+
+/* 新規商品登録画面　itemManage.java END*/
+
+/* カテゴリー商品修正画面　itemCategory.jsp*/
+
+.item_ctg_wrap{
+	display: flex;
+	flex-wrap: wrap;
+	width: 98vw;
+	height: 50vh;
+	text-align: right;
+}
+.item_ctg_img_wrap{
+	display: inline-block;
+	width: 24.5vw;
+	height: auto;
+	text-align: right;
+	
+}
+.item_ctg_img {
+	display: inline-block;
+	width: 24.5vw;
+	height: 24vw;
+	margin: 0;
+}
+.item_ctg_img img{
+	display: inline;
+	width: 22.5vw;
+	height: auto;
+	margin: 1vw;
+}
+item_ctg_price_wrap{
+	display: inline;
+	text-align: right;
+}
+.item_ctg_price{
+	display: inline;
+	margin:0;
+	text-align: right;;
+}
+.item_ctg_quant {
+	display: inline;
+	margin:0;
+	text-align: right;
+}
+.item_ctg_explan {
+	display: none;
+}
+.item_ctg_id {
+	display: inline;
+}
+.item_ctg_delete {
+	display: inline;
+}
+.item_ctg_confirm {
+	display: inline;
+}
+/* カテゴリー商品修正画面　itemCategory.jsp END*/
+
+/* 各商品修正画面　itemChanged.jsp　*/
+.manage_img img {
+	display: inline;
+	width: 23vw;
+	height: auto;
+	margin: 1vw;
+}
+/* 各商品修正画面　itemChanged.jsp END*/
+footer{
+	display: block ;
+	width: 98.75vw;
 	height: 30vh;
 	background-color:rgb(145, 145, 145);
-	top:70%;
 }
 
 

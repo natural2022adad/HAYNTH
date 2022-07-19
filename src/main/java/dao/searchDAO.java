@@ -23,12 +23,7 @@ public List<Item> findword(Search word) {
 	List<Item> itemlist=new ArrayList<>();
 	
 	AllSearchDAO_sql_logic sql_logic=new AllSearchDAO_sql_logic();
-	try {
-		Class.forName("com.mysql.jdbc.Driver");
-	} catch (ClassNotFoundException e1) {
-		// TODO: handle exception
-		e1.printStackTrace();
-	}
+	
 	
 	//データベース接続
 	 try(Connection conn=DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
