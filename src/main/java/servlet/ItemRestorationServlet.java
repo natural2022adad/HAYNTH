@@ -55,7 +55,7 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 		rgt.execute(cng);
 		
 		session.setAttribute("cng",cng);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemChanged.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemRestoration.jsp");
 		dispatcher.forward(request, response);
 	}
 

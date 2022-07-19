@@ -81,7 +81,7 @@ function OnFileSelect( inputElement )
 		
 	</form>
 	<%
-	//リクエストスコープに保存された
+	//スコープに保存された
 	session.setAttribute("c", c);
 	%>
  <% } %>
