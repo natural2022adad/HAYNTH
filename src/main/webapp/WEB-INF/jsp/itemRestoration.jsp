@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.ItemChange" %>
+<%@ page import="model.Item" %>
 
 <%
-ItemChange cng = (ItemChange) session.getAttribute("cng");
+Item cng = (Item) request.getAttribute("cng");
 %>
 <!DOCTYPE html>
 <html>
@@ -54,7 +54,7 @@ ItemChange cng = (ItemChange) session.getAttribute("cng");
 		</div>
 		<%
 	//スコープに保存された
-	session.setAttribute("cng", cng);
+	request.setAttribute("cng", cng);
 	%>	
 </div>
 

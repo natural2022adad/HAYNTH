@@ -4,9 +4,20 @@ import dao.ItemRegistDAO;
 
 
 public class ItemRegistLogic {
-	public void execute(ItemManage rgt) {
+	public void execute(Item mng) {
 		ItemRegistDAO dao = new ItemRegistDAO();
-		dao.create(rgt);
+		dao.create(mng);
 	}
+	//商品変更
+	public void execute2(Item cng) {
+			System.out.println("sinItemChangeLogic");
+			ItemRegistDAO dao = new ItemRegistDAO();
+			dao.change(cng);
+		}
+	/*public void execute(ItemChange cng) {
+		ItemRegistDAO dao = new ItemRegistDAO();
+		dao.recreate(cng);
+	}*///上に移植したので必要ないはず
+	
 
 }

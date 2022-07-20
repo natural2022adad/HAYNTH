@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.ItemManage" %>
+<%@ page import="model.Item" %>
 
 <%
-ItemManage mng = (ItemManage) session.getAttribute("mng");
-String filename=(String)session.getAttribute("filename");
-String path=(String)session.getAttribute("path");
+Item mng = (Item) session.getAttribute("mng");
+String filename=(String)session.getAttribute("filename");//いらない？
+String path=(String)session.getAttribute("path");//いらない？
 %>
 <!DOCTYPE html>
 <html>
@@ -24,20 +24,20 @@ String path=(String)session.getAttribute("path");
 <div class="item_wrap">
 	<div class="item_img_wrap">
 		<div class="item_img">
-		<img src="/HAYNTH/upload/<%= mng.getFilename() %>" alt="Koushin" class="koushin">
+		<img src="/HAYNTH/upload/<%= mng.getName() %>" alt="Koushin" class="koushin">
 		</div>
 			<div class="item_price_wrap">
 				<div class="item_price">
-				<p><%= mng.getItemName() %>；<%= mng.getItemPrice() %>円</p>
+				<p><%= mng.getName() %>；<%= mng.getPrice() %>円</p>
 				</div>
 				<div class="item_quant">
-				<p><%= mng.getItemQuat() %></p>
+				<p><%= mng.getQuantity() %></p>
 				</div>
 				<div class="item_littletotal">
-				<p>小計<%= mng.getItemQuat()*mng.getItemPrice() %>円</p>
+				<p>小計<%= mng.getQuantity()*mng.getPrice() %>円</p>
 				<p>カテゴリー：<%= mng.getCategory() %></p>
-				<p>説明文：<%= mng.getItemExplan() %></p>
-				<p>画像パス：<%= mng.getFilename() %></p>
+				<p>説明文：<%= mng.getExplanation() %></p>
+				<p>画像パス：<%= mng.getImage_path() %></p>
 				
 				</div>
 				<div class="item_delete">

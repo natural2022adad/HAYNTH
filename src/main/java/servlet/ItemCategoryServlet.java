@@ -17,8 +17,7 @@ import javax.servlet.http.Part;
 import model.DeleteIitemLogic;
 import model.GetCategoryLogic;
 import model.Item;
-import model.ItemChange;
-import model.ItemChangeLogic;
+import model.ItemRegistLogic;
 
 @WebServlet("/ItemCategoryServlet")
 @MultipartConfig(location="/tmp", maxFileSize=192048576) //画像アップロードに必要
@@ -94,41 +93,47 @@ public class ItemCategoryServlet extends HttpServlet {
 		System.out.println("numKey"+numKey);
 		
 		String category = request.getParameter("category");
-		String itemName = request.getParameter("itemName");
-		String itemPrice = request.getParameter("itemPrice");
-		String itemQuat = request.getParameter("itemQuat");
-		String itemExplan = request.getParameter("itemExplan");
+		String name = request.getParameter("itemName");
+		String price = request.getParameter("itemPrice");
+		String quantity = request.getParameter("itemQuat");
+		String explanation = request.getParameter("itemExplan");
 		String image_path = request.getParameter("image_path");
 		String image_path2 = request.getParameter("image_path2");
+		System.out.println("image_path2"+image_path2);
 		//画像保存　
 				//参考サイトhttps://tmg0525.hatenadiary.jp/entry/2017/08/14/175501　
 				//https://joytas.net/programming/jsp_servlet/fileupload
 				Part part=request.getPart("item");
+				if(part.getSize() != 0 && image_path2 == null) {
+					System.out.println("if文内part"+part);
 				//ファイル名を取得
-				String filename=part.getSubmittedFileName();//ie対応が不要な場合
+				image_path2=part.getSubmittedFileName();//ie対応が不要な場合
 				
 				//アップロードするフォルダ
 				String path=getServletContext().getRealPath("/upload");
 				//実際にファイルが保存されるパス確認
 				System.out.println(path);
 				//書き込み
-				part.write(path+File.separator+filename);
+				part.write(path+File.separator+image_path2);
+				}
 		key  = request.getParameter("itemId");
 		System.out.println("key"+key);
 		System.out.println("category"+category);
-		System.out.println("name"+itemName);
-		System.out.println("price"+itemPrice);
-		System.out.println("cquantity"+itemQuat);
-		System.out.println("explanation"+itemExplan);
+		System.out.println("name"+name);
+		System.out.println("price"+price);
+		System.out.println("cquantity"+quantity);
+		System.out.println("explanation"+explanation);
 		System.out.println("image_path"+image_path);
+		System.out.println("image_path2"+image_path2);
 		
-		ItemChange cng = new ItemChange(category,itemName,itemExplan,image_path,Integer.parseInt(itemPrice),Integer.parseInt(itemQuat));
+		Item cng = new Item(category,name,explanation,image_path,Integer.parseInt(price),Integer.parseInt(quantity));
 		System.out.println(cng);
-		ItemChangeLogic rgt = new ItemChangeLogic();
-		rgt.execute(cng);
+		ItemRegistLogic rgt = new ItemRegistLogic();
+		rgt.execute2(cng);
+		System.out.println("商品変更完了");
 		
 		session.setAttribute("cng",cng);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/HAYNTH/ItemManageServlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemRegist.jsp");
 		dispatcher.forward(request, response);
 	}
 

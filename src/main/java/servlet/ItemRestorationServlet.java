@@ -8,11 +8,9 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Item;
-import model.ItemChange;
-import model.ItemChangeLogic;
+import model.ItemRegistLogic;
 
 @WebServlet("/ItemRestorationServlet")
 @MultipartConfig(location="/tmp", maxFileSize=192048576) //画像アップロードに必要
@@ -26,8 +24,8 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
-		Item c = (Item) session.getAttribute("c");
+		//HttpSession session = request.getSession();
+		Item c = (Item) request.getAttribute("c");
 		System.out.println(c);
 		System.out.println("inumKey"+numKey);
 	
@@ -49,13 +47,13 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 		System.out.println("explanation"+itemExplan);
 		System.out.println("image_path"+image_path);
 		
-		ItemChange cng = new ItemChange(category,itemName,itemExplan,image_path,Integer.parseInt(itemPrice),Integer.parseInt(itemQuat));
+		Item cng = new Item(category,itemName,itemExplan,image_path,Integer.parseInt(itemPrice),Integer.parseInt(itemQuat));
 		System.out.println(cng);
-		ItemChangeLogic rgt = new ItemChangeLogic();
+		ItemRegistLogic rgt = new ItemRegistLogic();
 		rgt.execute(cng);
 		
-		session.setAttribute("cng",cng);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemRestoration.jsp");
+		request.setAttribute("cng",cng);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemRegist.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -57,6 +57,7 @@ public class CategoryDAO {
 				String name = rs.getString("NAME");
 				String explanation = rs.getString("EXPLANATION");
 				String image_path = rs.getString("IMAGE_PATH");
+				System.out.println(image_path);
 				int price= rs.getInt("PRICE");
 				int quantity = rs.getInt("QUANTITY");
 				int item_id = rs.getInt("ITEM_ID");

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.ItemManage" %>
+<%@ page import="model.Item" %>
 
 <%
-ItemManage mng = (ItemManage) session.getAttribute("mng");
+Item mng = (Item) session.getAttribute("mng");
 String filename=(String)session.getAttribute("filename");
 String path=(String)session.getAttribute("path");
 %>
@@ -31,14 +31,9 @@ String path=(String)session.getAttribute("path");
 				              <button type="submit" value="CONFIRM"  name="CONFIRM"></button>
 				    </form>
 				</div>
-			
-		</div>
-		<div class="item_alltotal">
-		<p>合計2000円</p>
 		</div>
 		<div class="kakunin">
 			<form action="/" method="post" class="">
-				
 		        <button type="submit" value="確認画面" name="確認画面"></button>
 		    </form>
 		</div>
