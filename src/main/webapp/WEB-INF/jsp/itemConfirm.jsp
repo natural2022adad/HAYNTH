@@ -18,46 +18,40 @@ String path=(String)session.getAttribute("path");//いらない？
 </head>
 <body>
 <div class="headerearea">
-
+<jsp:include page="/header.jsp"/>
 </div>
-<p>商品登録画面</p>
-<div class="item_wrap">
-	<div class="item_img_wrap">
-		<div class="item_img">
-		<img src="/HAYNTH/upload/<%= mng.getName() %>" alt="Koushin" class="koushin">
+<h1>商品確認画面</h1>
+<div class="item_con_wrap">
+	<div class="item_con_img_wrap">
+		<div class="item_con_img">
+			<img src="/HAYNTH/upload/<%= mng.getImage_path() %>" alt="Item_img" class="item_con_img_img">
 		</div>
-			<div class="item_price_wrap">
-				<div class="item_price">
-				<p><%= mng.getName() %>；<%= mng.getPrice() %>円</p>
-				</div>
-				<div class="item_quant">
-				<p><%= mng.getQuantity() %></p>
-				</div>
-				<div class="item_littletotal">
-				<p>小計<%= mng.getQuantity()*mng.getPrice() %>円</p>
-				<p>カテゴリー：<%= mng.getCategory() %></p>
-				<p>説明文：<%= mng.getExplanation() %></p>
-				<p>画像パス：<%= mng.getImage_path() %></p>
-				
-				</div>
-				<div class="item_delete">
-					<form action="" method="post" class="">
-				              <button type="submit" value=""  name="削除"></button>
-				    </form>
-				</div>
+	</div>
+		<div class="item_con_price_wrap">
+			<div class="item_con_explan_wrap">
+			<p><%= mng.getExplanation() %></p>
+			</div>
+			<div class="item_con_price">
+			<p><%= mng.getPrice() %>円</p>
+			</div>
+			<div class="item_con_quant">
+			<p><%= mng.getQuantity() %></p>
+			</div>
+			<div class="item_con_name">
+			<p><%= mng.getName() %></p>
+			</div>
+			<div class="item_con_littletotal">
+			<p>Category：<%= mng.getCategory() %></p>
 			</div>
 		</div>
-		<div class="item_alltotal">
-		<p>合計2000円</p>
-		</div>
-		<div class="itemconfirm">
-			<form action="/HAYNTH/ItemRegistServlet" method="post" class="">
-				
-		     <input type="submit" value="登録">
-		  </form>
-		</div>
-			
 </div>
+			<div class="itemconfirm">
+				<form action="/HAYNTH/ItemRegistServlet" method="post" class="">
+		    		 <input type="submit" value="登録">
+		  		</form>
+			</div>
+
+
 
 
 <div class="footerarea">

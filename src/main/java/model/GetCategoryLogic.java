@@ -11,6 +11,6 @@ public class GetCategoryLogic {
 	CategoryDAO dao = new CategoryDAO();
 	List<Item> ctgList = dao.findAll();
 	return ctgList;
-}
+	}
 
 }

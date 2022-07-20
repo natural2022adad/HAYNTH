@@ -20,21 +20,14 @@ String path=(String)session.getAttribute("path");
 <div class="headerearea">
 </div>
 
-<div class="item_wrap">
-	<div class="item_img_wrap">
-		<div class="item_img">
-		<img src="<%= path %>g" alt="Koushin" class="koushin">
-		</div>
-			<h1>商品登録完了</h1>
-				<div class="item_delete">
-					<form action="" method="post" class="">
-				              <button type="submit" value="CONFIRM"  name="CONFIRM"></button>
-				    </form>
-				</div>
-		</div>
+<div class="item_regist_wrap">
+	
+		
+		<h1>商品登録完了</h1>	
+	
 		<div class="kakunin">
-			<form action="/" method="post" class="">
-		        <button type="submit" value="確認画面" name="確認画面"></button>
+			<form action="/HAYNTH/ItemManegeServlet" method="get" class="">
+		        <button type="submit"  value="新規登録画面へ" name="新規登録"></button>
 		    </form>
 		</div>
 			

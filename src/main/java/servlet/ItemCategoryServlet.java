@@ -55,6 +55,8 @@ public class ItemCategoryServlet extends HttpServlet {
 				key = request.getParameter("delete");
 				 numKey = Integer.valueOf(key);
 				 key = null;
+				 //image_pathを取得しておく
+				 
 				//Delete前にデータをリクエストスコープに格納
 						 GetCategoryLogic f = new GetCategoryLogic();
 						List<Item> ctgList = f.execute();
@@ -63,6 +65,7 @@ public class ItemCategoryServlet extends HttpServlet {
 				//Delete			
 				 DeleteIitemLogic d = new DeleteIitemLogic();
 					d.execute();
+					
 					//request.setAttribute("ctgList", ctgList);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemManage.jsp");
 					dispatcher.forward(request, response);
