@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.Item, servlet.ItemCategoryServlet,java.util.List" %>
+<%@ page import="model.Item, model.Key,java.util.List" %>
 <%
 //リクエストスコープに保存された
 List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
+Key Jbk = (Key) request.getAttribute("Jbk");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@ function OnFileSelect( inputElement )
 </head>
 <body>
 <div class="headerearea">
-<h1>ITEM_ID:<%= ItemCategoryServlet.numKey %></h1>
+<h1>ITEM_ID:<%= Jbk.getNumKey() %></h1>
 </div>
 
 <div class="manage_wrap">
@@ -69,16 +70,24 @@ function OnFileSelect( inputElement )
 			<input type="number" name="itemPrice" value="<%= c.getPrice() %>"><br>
 			<input type="number" name="itemQuat" value="<%= c.getQuantity() %>"><br>
 			<textarea name="itemExplan" cols="50" rows="4" maxlength="80" placeholder="200字以内で入力してください。"><%= c.getExplanation() %></textarea><br>
-			<p class="manage_img"><img src="/HAYNTH/upload/<%= c.getImage_path() %>"></p>
+			<% if(c.getImage_path() != null){%><p class="manage_img"><img src="/HAYNTH/upload/<%= c.getImage_path() %>"></p><%} %>
+			<% if(c.getImage_path2() != null){%><p class="manage_img"><img src="/HAYNTH/upload/<%= c.getImage_path2() %>"></p><%} %>
+			<% if(c.getImage_path3() != null){%><p class="manage_img"><img src="/HAYNTH/upload/<%= c.getImage_path3() %>"></p><%} %>
 			<label class="input_botton">
-				<input type="hidden" name="image_path" value="<%= c.getImage_path() %>">
+				<% if(c.getImage_path() != null){%><input type="hidden" name="image_path" value="<%= c.getImage_path() %>"><%} %>
+				<% if(c.getImage_path2() != null){%><input type="hidden" name="image_path2" value="<%= c.getImage_path2() %>"><%} %>
+				<% if(c.getImage_path3() != null){%><input type="hidden" name="image_path3" value="<%= c.getImage_path3() %>"><%} %>
 				<input type="file" name="item" onchange="OnFileSelect( this );" multiple>ADD<br>
 			</label>
 			<ul id="ID001" style="list-style: none; padding-left: 0;"></ul>
 		</div>
-			<input type="hidden" name="itemId" value="<%= c.getItem_id() %>"><br>
-			<input type="submit" value="CHANGED">
-		
+		<div class="item_con_btn_wrap">
+			<div class="itemconfirm">
+				<input type="hidden" name="itemId" value="<%= c.getItem_id() %>">
+				 <button type="submit" value="CHANGED" class="change"></button >
+			</div>
+		</div>
+			
 	</form>
 	<%
 	//スコープに保存された
@@ -87,16 +96,17 @@ function OnFileSelect( inputElement )
  <% } %>
 </div>
 
-
-
-<form action="/HAYNTH/ItemCategoryServlet" method="get" >
-<input type="submit" name="fashion" value="fashion">
-<input type="submit" name="cosmetic" value="cosmetic">
-<input type="submit" name="food" value="food">
-<input type="submit" name="book" value="book">
-<input type="submit" name="gatget" value="gatget">
-<input type="submit" name="outdoors" value="outdoors" >
-</form>
+<div class="ctg_btn_footer">
+	<form action="/HAYNTH/ItemCategoryServlet" method="get" class="ctg_btn_form">
+		<button type="submit" name="ctg" value="accessorie" class="accessorie"></button >
+		<button type="submit" name="ctg" value="cosmetic" class="cosmetic"></button >
+		<button type="submit" name="ctg" value="food" class="food"></button >
+		<button type="submit" name="ctg" value="book" class="book"></button >
+		<button type="submit" name="ctg" value="gadget" class="gadget"></button >
+		<button type="submit" name="ctg" value="outdoors" class="outdoors"></button >
+		<button type="submit" name="ctg" value="allitem" class="allitem"></button >
+	</form>
+</div>
 <div class="footerarea">
 </div>
 </body>

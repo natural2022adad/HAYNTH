@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.Item,model.Cart, java.util.ArrayList, java.util.*" %>
+<%
+//ArrayList<Cart> cart = new ArrayList<Cart>();
+//session.setAttribute("cart", cart);
+Map<String, Integer> cart = new LinkedHashMap<String, Integer>();
+session.setAttribute("cart", cart);
+System.out.println("index.jp_cart" + cart);
+
+%>
 <!DOCTYPE html>
 <html>
 <head>

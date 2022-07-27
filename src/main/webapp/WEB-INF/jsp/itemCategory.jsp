@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.Item, servlet.ItemCategoryServlet,java.util.List" %>
+<%@ page import="model.Item, model.Key,model.Cart, javax.servlet.http.HttpSession,java.util.List,java.util.Map" %>
 <%
 //リクエストスコープに保存されたエラーメッセージを取得
+
+Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
 List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
+Key Jbk = (Key) request.getAttribute("Jbk");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -12,22 +16,16 @@ List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/t_style.css">
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>HAYNTH</title>
 </head>
 <body>
-<div class="headerearea">
-<form action="/HAYNTH/ItemCategoryServlet" method="get" >
-<input type="submit" name="ctg" value="fashion">
-<input type="submit" name="ctg" value="cosmetic">
-<input type="submit" name="ctg" value="food">
-<input type="submit" name="ctg" value="book">
-<input type="submit" name="ctg" value="gatget">
-<input type="submit" name="ctg" value="outdoors">
-<input type="submit" name="ctg" value="allitem">
-</form>
-</div>
-<h1><%= ItemCategoryServlet.key %></h1>
+<header>
+<jsp:include page="/header2.jsp" />
+</header>
+<main>
+<h1><%= Jbk.getKey() %></h1>
+<div class="wrap">
 <div class="item_ctg_wrap">
 	<% for(Item c : ctgList) {%>
 	<div class="item__ctg_img_wrap">
@@ -51,12 +49,20 @@ List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
 				</div>
 				<div class="item_ctg_delete">
 					<form action="/HAYNTH/ItemCategoryServlet" method="get" >
-				              <input type="submit" value="<%= c.getItem_id() %>"  name="delete" id="btn">
+				              <button type="submit" value="<%= c.getItem_id() %>"  name="delete" id="btn" class="delete"></button >
 				    </form>
 				</div>
 				<div class="item_ctg_confirm">
 					<form action="/HAYNTH/ItemCategoryServlet" method="get" class="">
-						<input type="submit" value="<%= c.getItem_id() %>" name="修正">
+						<button type="submit" value="<%= c.getItem_id() %>" name="修正" class="change"></button >
+					</form>
+				</div>
+				
+				<div class="item_ctg_confirm">
+					<form action="/HAYNTH/CartServlet" method="get" class="">
+						<input type ="hidden" value=<%= Jbk.getKey() %> name="ctg">
+						<input type ="hidden" value=<%= c.getQuantity() %> name="quantity">
+						<button type="submit" value=<%= c.getItem_id() %> name="item_id" class="in_cart"></button >
 					</form>
 				</div>
 			</div>
@@ -64,6 +70,15 @@ List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
 		
 	<% } %>
 </div>
+
+<% 
+//request.setAttribute("Jbk", Jbk);
+System.out.println("Jbk"+Jbk);
+
+//request.setAttribute("ctgList", ctgList); 
+
+%>
+
 <script>
 	var btn = document.getElementById('btn');
 	btn.addEventListener('click', function() {
@@ -79,7 +94,22 @@ List<Item> ctgList = (List<Item>) request.getAttribute("ctgList");
 	    }
 	})
 </script>
-<div class="footerarea">
+
+<div class="ctg_btn">
+	<form action="/HAYNTH/ItemCategoryServlet" method="get" class="ctg_btn_form">
+		<button type="submit" name="ctg" value="accessorie" class="accessorie"></button >
+		<button type="submit" name="ctg" value="cosmetic" class="cosmetic"></button >
+		<button type="submit" name="ctg" value="food" class="food"></button >
+		<button type="submit" name="ctg" value="book" class="book"></button >
+		<button type="submit" name="ctg" value="gadget" class="gadget"></button >
+		<button type="submit" name="ctg" value="outdoors" class="outdoors"></button >
+		<button type="submit" name="ctg" value="allitem" class="allitem"></button >
+	</form>
 </div>
+</div>
+
+</main>
+<footer>
+</footer>
 </body>
 </html>

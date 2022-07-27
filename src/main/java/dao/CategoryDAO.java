@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Item;
-import servlet.ItemCategoryServlet;
+import model.Key;
 
 public class CategoryDAO {
 	
@@ -17,7 +17,7 @@ public class CategoryDAO {
 	private final String DB_USER="root";
 	private final String DB_PASS="";
 	
-	public List<Item> findAll() {
+	public List<Item> findAll(Key Jbk) {
 		List<Item> ctgList = new ArrayList<>();
 		System.out.println("new ArrayList<>()");
 		
@@ -32,8 +32,8 @@ public class CategoryDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			System.out.println("CtgDAOスタート");
 			//ItemCategoryServleのkeyを持ってきたい
-			String word = ItemCategoryServlet.key;
-			int itemId = ItemCategoryServlet.numKey;
+			String word = Jbk.getKey();
+			int itemId = Jbk.getNumKey();
 			String sql = null;
 			System.out.println(word);
 			if(word != null) {
@@ -57,11 +57,13 @@ public class CategoryDAO {
 				String name = rs.getString("NAME");
 				String explanation = rs.getString("EXPLANATION");
 				String image_path = rs.getString("IMAGE_PATH");
+				String image_path2 = rs.getString("IMAGE_PATH2");
+				String image_path3 = rs.getString("IMAGE_PATH3");
 				System.out.println(image_path);
 				int price= rs.getInt("PRICE");
 				int quantity = rs.getInt("QUANTITY");
 				int item_id = rs.getInt("ITEM_ID");
-				Item item = new Item(category, name, explanation, image_path, price, quantity, item_id);
+				Item item = new Item(category, name, explanation, image_path, image_path2, image_path3,price, quantity, item_id);
 				ctgList.add(item);
 				System.out.println("ArrayListに追加");
 			}
@@ -73,7 +75,7 @@ public class CategoryDAO {
 		return ctgList;
 	}
 	
-	public boolean deleteItem() {
+	public boolean deleteItem(Key Jbk) {
 		
 		try {
 			
@@ -86,8 +88,8 @@ public class CategoryDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			System.out.println("CtgDAOスタートdeleteItem()");
 			//ItemCategoryServleのkeyを持ってきたい
-			String word = ItemCategoryServlet.key;
-			int itemId = ItemCategoryServlet.numKey;
+			String word = Jbk.getKey();
+			int itemId = Jbk.getNumKey();
 			String sql = null;
 			System.out.println("word"+word);
 			System.out.println("itemId"+itemId);

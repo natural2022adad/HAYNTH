@@ -1,8 +1,6 @@
 
 
 body {
-font-family: 'mplus';
-font-size:1rem;
 margin:0;
 
 }
@@ -10,7 +8,7 @@ margin:0;
 main {
 margin:0;
 }
-.headerearea{
+header{
 	display: block;
 	width: 98.75vw;
 	height: 10vh;
@@ -43,7 +41,6 @@ h1 {
 	width: 50vw;
 	height: 40vh;
 	text-align: center;
-	float:left;
 	
 }
 .item_img img{
@@ -116,10 +113,12 @@ item_alltotal{
 	margin:5vh 0 0 0;
 }
 input[type="number"] {
+	text-align: right;
 	margin:1.5vh 0 0 0;
 }
 
 input[type="text"] {
+	text-align: right;
 	margin:1.5vh 0 0 0;
 }
 
@@ -140,7 +139,7 @@ input[type="file"] {
 
 input[value="CONFIRM"] {
 	display: block;
-	margin:auto;
+	margin:5vh auto auto auto;
 }
 #ID001 img {
 	display: inline;
@@ -148,18 +147,29 @@ input[value="CONFIRM"] {
 	height: auto;
 	margin: 1vw;
 }
+.notice::placeholder  {
+  color: red;
+  font-weight:bold;
+}
 
+.notice select{
+  background-color: red;
+}
 /* 新規商品登録画面　itemManage.java END*/
 
 /* 新規商品確認画面　itemConfirm.java */
 .item_con_wrap {
-	display:flex;
+	display:inline-block;
+	/*flex-wrap: wrap;*/
+	width:100vw;
+	height:120vh;
 }
 .item_con_img_wrap{
 	display: inline-block;
 	width: 40vw;
-	height: 70vh;
-	margin: 10vh 0 0 9vw;
+	height: 60cvh;
+	margin: 2vh 0 0 11vw;
+	padding:0 0 0 0;
 	text-align: left;
 	float: left;
 }
@@ -171,28 +181,58 @@ input[value="CONFIRM"] {
 }
 
 .item_con_img img{
-	display: inline;
+	display: inline-block;
 	width: 35vw ;
 	height: auto;
-	margin:0 0 15vh 0;
+	margin:0 0 5vh 0;
 	
 }
+
+.item_con_img_mini_wrap{
+	display: inline-flex;
+	justify-content:space-between;
+	width: 38vw;
+	height: 20vh;
+}
+
+
+
+.item_con_img_mini img{
+	display: inline;
+	width: 11vw;
+	height: auto;
+	margin:auto;
+}
+
 .item_con_price_wrap{
 	display: inline-block;
-	width: 40vw;
-	height: 70vh;
+	width: 30vw;
+	height: 60vh;
 	margin: 10vh 9vw 0 0;
+	padding: 0 0 0 0;
 	text-align: right;
 }
-.itemconfirm{
-	display: block;
+
+.item_con_btn_wrap {
+	display: inline-block;
 	width: 100vw ;
 	margin: 5vh auto 10vh auto;
-	text-align:center;
 }
+
+.itemconfirm{
+	display: inline;
+	margin: 5vh auto 10vh auto;
+	text-align:center;
+	border:none;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	appearance: none;
+}
+
 .item_con_explan_wrap {
-	display: inline-block;
-	width: 35vw;
+	display: inline;
+	width: 30vw;
 	height: 10vw;
 }
 .itemconfirm form{
@@ -208,7 +248,6 @@ input[value="CONFIRM"] {
 	display: flex;
 	flex-wrap: wrap;
 	width: 98vw;
-	height: 50vh;
 	text-align: right;
 }
 .item_ctg_img_wrap{
@@ -230,7 +269,7 @@ input[value="CONFIRM"] {
 	height: auto;
 	margin: 1vw;
 }
-item_ctg_price_wrap{
+.item_ctg_price_wrap{
 	display: inline;
 	text-align: right;
 }
@@ -248,7 +287,7 @@ item_ctg_price_wrap{
 	display: none;
 }
 .item_ctg_id {
-	display: inline;
+	display: none;
 }
 .item_ctg_delete {
 	display: inline;
@@ -266,6 +305,95 @@ item_ctg_price_wrap{
 	height: auto;
 	margin: 1vw;
 }
+
+/* ボタンデザイン */
+.ctg_btn{
+	display: block;
+	 width: 100vw;
+	 margin: auto;
+	 clear:left;
+}
+.ctg_btn_footer{
+	display: inline;
+	 width: 100vw;
+	 margin: 20vh auto 0 auto;
+}
+.ctg_btn_form{
+	display: block;
+	 margin: 0 0 0 0.75vw;
+}
+
+.change, .registration, .comfirm, .btn_new_item_add, .delete, .in_cart, .detail{
+    margin: auto;
+    width: 20vw;
+	height: 5vh;
+	border:none;
+	background-size: contain !important;
+}
+.detail{
+	display: inline;
+	background: url(./btn_img/btn_detail.png) center center no-repeat;
+}
+.change {
+	display: inline;
+	background: url(./btn_img/btn_change.png) center center no-repeat;
+}
+.delete {
+	display: inline;
+	background: url(./btn_img/btn_delete.png) center center no-repeat;
+}
+.in_cart {
+	display: inline;
+	background: url(./btn_img/btn_in_cart.png) center center no-repeat;
+}
+.registration {
+	display: inline;
+	background: url(./btn_img/btn_registration.png) center center no-repeat;
+}
+.comfirm {
+	display: block;
+	background: url(./btn_img/btn_confirm.png) center center no-repeat;
+}
+.btn_new_item_add {
+	display: block;
+	background: url(./btn_img/btn_new_item_add.png) center center no-repeat;
+}
+.comfirm_btn {
+	display: block;
+	margin: 0 0 20vh 0;
+}
+.accessorie, .book, .cosmetic, .food, .gadget, .outdoors, .allitem {
+	display: inline;
+    margin: auto;
+    width: 13.5vw;
+	height: 5vh;
+	border:none;
+	background-size: contain !important;
+}
+.accessorie {
+	background: url(./btn_img/btn_accessorie.png) center center no-repeat;
+}
+.book {
+	background: url(./btn_img/btn_book.png) center center no-repeat;
+}
+.cosmetic {
+	background: url(./btn_img/btn_cosmetic.png) center center no-repeat;
+}
+.food {
+	background: url(./btn_img/btn_food.png) center center no-repeat;
+}
+.gadget {
+	background: url(./btn_img/btn_gadget.png) center center no-repeat;
+}
+.outdoors {
+	background: url(./btn_img/btn_outdoors.png) center center no-repeat;
+}
+
+.allitem {
+	background: url(./btn_img/btn_allitem.png) center center no-repeat;
+}
+/* ボタンデザイン END*/
+
 /* 各商品修正画面　itemChanged.jsp END*/
 footer{
 	display: block ;

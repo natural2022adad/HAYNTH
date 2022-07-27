@@ -24,11 +24,6 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		//HttpSession session = request.getSession();
-		Item c = (Item) request.getAttribute("c");
-		System.out.println(c);
-		System.out.println("inumKey"+numKey);
-	
 		
 		String category = request.getParameter("category");
 		String itemName = request.getParameter("name");
@@ -36,10 +31,10 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 		String itemQuat = request.getParameter("quantity");
 		String itemExplan = request.getParameter("explanation");
 		String image_path = request.getParameter("image_path");
+		String image_path2 = request.getParameter("image_path2");
+		String image_path3 = request.getParameter("image_path3");
 		
-		
-		key  = request.getParameter("itemId");
-		System.out.println("key"+key);
+
 		System.out.println("category"+category);
 		System.out.println("name"+itemName);
 		System.out.println("price"+itemPrice);
@@ -47,11 +42,11 @@ public class ItemRestorationServlet extends ItemCategoryServlet {
 		System.out.println("explanation"+itemExplan);
 		System.out.println("image_path"+image_path);
 		
-		Item cng = new Item(category,itemName,itemExplan,image_path,Integer.parseInt(itemPrice),Integer.parseInt(itemQuat));
+		Item cng = new Item(category,itemName,itemExplan,image_path,image_path2,image_path3,Integer.parseInt(itemPrice),Integer.parseInt(itemQuat));
 		System.out.println(cng);
 		ItemRegistLogic rgt = new ItemRegistLogic();
 		rgt.execute(cng);
-		
+
 		request.setAttribute("cng",cng);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemRegist.jsp");
 		dispatcher.forward(request, response);

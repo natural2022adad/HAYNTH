@@ -3,9 +3,9 @@
 <%@ page import="model.Item" %>
 
 <%
-Item mng = (Item) session.getAttribute("mng");
-String filename=(String)session.getAttribute("filename");
-String path=(String)session.getAttribute("path");
+//Item mng = (Item) session.getAttribute("mng");
+//String filename=(String)session.getAttribute("filename");
+//String path=(String)session.getAttribute("path");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,11 +26,14 @@ String path=(String)session.getAttribute("path");
 		<h1>商品登録完了</h1>	
 	
 		<div class="kakunin">
-			<form action="/HAYNTH/ItemManegeServlet" method="get" class="">
-		        <button type="submit"  value="新規登録画面へ" name="新規登録"></button>
+			<form action="/HAYNTH/ItemManageServlet" method="get" >
+		        <button type="submit"  value="" name=""class="btn_new_item_add"></button>
 		    </form>
 		</div>
+			<%
+			session.removeAttribute("mng"); 
 			
+			%>
 </div>
 
 

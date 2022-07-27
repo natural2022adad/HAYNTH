@@ -4,8 +4,8 @@
 
 <%
 Item mng = (Item) session.getAttribute("mng");
-String filename=(String)session.getAttribute("filename");//いらない？
-String path=(String)session.getAttribute("path");//いらない？
+//String filename=(String)session.getAttribute("filename");//いらない？
+//String path=(String)session.getAttribute("path");//いらない？
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +25,8 @@ String path=(String)session.getAttribute("path");//いらない？
 	<div class="item_con_img_wrap">
 		<div class="item_con_img">
 			<img src="/HAYNTH/upload/<%= mng.getImage_path() %>" alt="Item_img" class="item_con_img_img">
+			<% if(mng.getImage_path2() != null){%><img src="/HAYNTH/upload/<%= mng.getImage_path2() %>" alt="Item_img" class="item_con_img_img"><%} %>
+			<% if(mng.getImage_path3() != null){%><img src="/HAYNTH/upload/<%= mng.getImage_path3() %>" alt="Item_img" class="item_con_img_img"><%} %>
 		</div>
 	</div>
 		<div class="item_con_price_wrap">
@@ -45,11 +47,18 @@ String path=(String)session.getAttribute("path");//いらない？
 			</div>
 		</div>
 </div>
+		<div class="item_con_btn_wrap">
 			<div class="itemconfirm">
-				<form action="/HAYNTH/ItemRegistServlet" method="post" class="">
-		    		 <input type="submit" value="登録">
+				<form action="/HAYNTH/ItemManageServlet" method="get" class="">
+		    		 <button type="submit" value="修正" class="change"></button >
 		  		</form>
 			</div>
+			<div class="itemconfirm">
+				<form action="/HAYNTH/ItemRegistServlet" method="post" class="">
+					<button type="submit" value="登録" class="registration"></button >
+		  		</form>
+			</div>
+		</div>
 
 
 

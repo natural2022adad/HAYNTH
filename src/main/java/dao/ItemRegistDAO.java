@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Item;
-import servlet.ItemCategoryServlet;
+import model.Key;
 
 public class ItemRegistDAO {
 	private final String JDBC_URL="jdbc:mysql://localhost:3306/haynth?characterEncoding=UTF-8&serverTimezone=JST";
@@ -25,7 +25,7 @@ try {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			
 			//INSERT文の準備（idは自動連番なので指定しなくてもよい）
-			String sql = "INSERT INTO ITEM(CATEGORY, NAME, EXPLANATION, PRICE, QUANTITY, IMAGE_PATH) VALUES(?, ?, ?, ?, ? ,?)";
+			String sql = "INSERT INTO ITEM(CATEGORY, NAME, EXPLANATION, PRICE, QUANTITY, IMAGE_PATH, IMAGE_PATH2, IMAGE_PATH3) VALUES(?, ?, ?, ?, ? ,? , ?, ?)";
 			PreparedStatement pSmt = conn.prepareStatement(sql);
 			
 			// INSERT文中の「？」に使用する値を設定しSQLを完成
@@ -35,6 +35,8 @@ try {
 			pSmt.setInt(4, rgt.getPrice());
 			pSmt.setInt(5, rgt.getQuantity());
 			pSmt.setString(6, rgt.getImage_path());
+			pSmt.setString(7, rgt.getImage_path2());
+			pSmt.setString(8, rgt.getImage_path3());
 			
 			//INSERT文を実行（resulｔには追加された行数が代入される）
 			int result = pSmt.executeUpdate();
@@ -83,7 +85,7 @@ try {
 				}
 				return true;
 			}*/	
-	public boolean change(Item rgt) {
+	public boolean change(Item cng,Key Jbk) {
 		try {
 					
 					Class.forName("com.mysql.jdbc.Driver");
@@ -94,18 +96,20 @@ try {
 		//データベースへ接続
 				try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 					System.out.println("changeDAO");
-					int itemId = Integer.valueOf(ItemCategoryServlet.key);
-					
-					String sql = "UPDATE `item` SET`CATEGORY`= ?,`NAME`= ?,`EXPLANATION`= ?,`PRICE`= ?,`QUANTITY`= ?,`IMAGE_PATH`= ? WHERE  `ITEM_ID`=" + itemId +";";
+					int itemId = Integer.valueOf(Jbk.getKey());
+					System.out.println("itemId"+itemId);
+					String sql = "UPDATE `item` SET`CATEGORY`= ?,`NAME`= ?,`EXPLANATION`= ?,`PRICE`= ?,`QUANTITY`= ?,`IMAGE_PATH`= ?,`IMAGE_PATH2`= ?,`IMAGE_PATH3`= ? WHERE  `ITEM_ID`=" + itemId +";";
 					PreparedStatement pSmt = conn.prepareStatement(sql);
 					
 					// INSERT文中の「？」に使用する値を設定しSQLを完成
-					pSmt.setString(1, rgt.getCategory());
-					pSmt.setString(2, rgt.getName());
-					pSmt.setString(3, rgt.getExplanation());
-					pSmt.setInt(4, rgt.getPrice());
-					pSmt.setInt(5, rgt.getQuantity());
-					pSmt.setString(6, rgt.getImage_path());
+					pSmt.setString(1, cng.getCategory());
+					pSmt.setString(2, cng.getName());
+					pSmt.setString(3, cng.getExplanation());
+					pSmt.setInt(4, cng.getPrice());
+					pSmt.setInt(5, cng.getQuantity());
+					pSmt.setString(6, cng.getImage_path());
+					pSmt.setString(7, cng.getImage_path2());
+					pSmt.setString(8, cng.getImage_path3());
 					
 					//INSERT文を実行（resulｔには追加された行数が代入される）
 					int result = pSmt.executeUpdate();

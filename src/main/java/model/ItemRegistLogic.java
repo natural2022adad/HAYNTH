@@ -9,10 +9,10 @@ public class ItemRegistLogic {
 		dao.create(mng);
 	}
 	//商品変更
-	public void execute2(Item cng) {
+	public void execute2(Item cng,Key Jbk) {
 			System.out.println("sinItemChangeLogic");
 			ItemRegistDAO dao = new ItemRegistDAO();
-			dao.change(cng);
+			dao.change(cng, Jbk);
 		}
 	/*public void execute(ItemChange cng) {
 		ItemRegistDAO dao = new ItemRegistDAO();
