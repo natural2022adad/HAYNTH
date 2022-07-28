@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import model.GetCategoryLogic;
 import model.Item;
 import model.Key;
 
-
 @WebServlet("/CartServlet2")
 public class CartServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,13 +24,13 @@ public class CartServlet2 extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-	
-		List<Item> ctgList = new ArrayList<Item>();
-		System.out.println("JctgList"+ctgList);
+		HttpSession session =request.getSession();
+		List<Item> ctgList = (List<Item>) session.getAttribute("ctgList");
+		System.out.println("CartServlet内ctgList"+ctgList);
 		Key Jbk = new Key();
 		System.out.println("Jbk"+Jbk);
 		
-		HttpSession session =request.getSession();
+		
 		//ArrayList<Cart> cart = (ArrayList<Cart>) session.getAttribute("cart");
 		Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
 		System.out.println("CartServlet_cart1"+cart);
@@ -72,11 +70,13 @@ public class CartServlet2 extends HttpServlet {
 		System.out.println("cart1"+cart);
 		session.setAttribute("cart",cart);
 		
-		
-		Jbk.setKey(request.getParameter("ctg"));
+		int item_id2 =  Integer.parseInt(item_id);
+		Jbk.setNumKey(item_id2);
+		System.out.println("Jbk.getKey()"+Jbk.getKey());
 		GetCategoryLogic f = new GetCategoryLogic();
 		ctgList = f.execute(Jbk);
-		request.setAttribute("ctgList", ctgList);
+		System.out.println("ctgList"+ctgList);
+		session.setAttribute("ctgList", ctgList);
 		//元のページに戻るため
 		request.setAttribute("Jbk", Jbk);
 		
@@ -86,8 +86,20 @@ public class CartServlet2 extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		System.out.println("CartServlet内post");
+		HttpSession session =request.getSession();
+		List<Item> ctgList = (List<Item>) session.getAttribute("ctgList");
+		System.out.println("CartServlet内ctgList"+ctgList);
+		//ArrayList<Cart> cart = (ArrayList<Cart>) session.getAttribute("cart");
+		Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
+		System.out.println("CartServlet_cart1"+cart);
+		int cart_size = Integer.parseInt(request.getParameter("look_cart"));
+		System.out.println("Cart_size"+cart_size);
+		for (String cart_item : cart.keySet()) {
+			int cart_item_quant =  cart.get(cart_item);
+			System.out.println("cart_item"+ cart_item + "個数"+cart_item_quant);
+		}
 	}
 
 }

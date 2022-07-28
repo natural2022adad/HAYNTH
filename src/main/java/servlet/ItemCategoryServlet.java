@@ -30,6 +30,7 @@ public class ItemCategoryServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session =request.getSession();
 		Key Jbk = new Key();
 		
 		System.out.println("numKey"+Jbk.getNumKey());
@@ -62,7 +63,7 @@ public class ItemCategoryServlet extends HttpServlet {
 						 GetCategoryLogic f = new GetCategoryLogic();
 						List<Item> ctgList = f.execute(Jbk);
 						System.out.println("ctgList" + ctgList);
-						request.setAttribute("ctgList", ctgList);
+						session.setAttribute("ctgList", ctgList);
 				//Delete			
 				 DeleteIitemLogic d = new DeleteIitemLogic();
 					d.execute(Jbk);
@@ -76,7 +77,7 @@ public class ItemCategoryServlet extends HttpServlet {
 			request.setAttribute("Jbk",Jbk);
 			GetCategoryLogic f = new GetCategoryLogic();
 			List<Item> ctgList = f.execute(Jbk);
-			request.setAttribute("ctgList", ctgList);
+			session.setAttribute("ctgList", ctgList);
 			System.out.println("ctgList" + ctgList);
 			//if(numKey > 0) {
 				//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemChanged.jsp");

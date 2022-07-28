@@ -21,7 +21,7 @@ Key Jbk = (Key) request.getAttribute("Jbk");
 </head>
 <body>
 <header>
-<jsp:include page="/header2.jsp" />
+<jsp:include page="/header.jsp" />
 </header>
 <main>
 <h1><%= Jbk.getKey() %></h1>

@@ -89,7 +89,9 @@ public class ItemCategoryServlet2 extends HttpServlet {
 			}
 			
 		} else if(Jbk.getKey() != null){
+			
 			request.setAttribute("Jbk",Jbk);
+			System.out.println("Jbk"+Jbk);
 			GetCategoryLogic f = new GetCategoryLogic();
 			List<Item> ctgList = f.execute(Jbk);
 			session.setAttribute("ctgList", ctgList);

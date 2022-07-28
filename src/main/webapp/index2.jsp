@@ -20,9 +20,9 @@ System.out.println("index.jp_cart" + cart);
 </head>
 
 <body>
-
+<header>
 <jsp:include page="/header.jsp" />
-
+</header>
 
 <div class="item_wrap">
 	<div class="item_img_wrap">

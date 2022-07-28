@@ -323,7 +323,7 @@ input[value="CONFIRM"] {
 	 margin: 0 0 0 0.75vw;
 }
 
-.change, .registration, .comfirm, .btn_new_item_add, .delete, .in_cart, .detail{
+.change, .registration, .comfirm, .btn_new_item_add, .delete, .in_cart, .detail, .look_cart{
     margin: auto;
     width: 20vw;
 	height: 5vh;
@@ -333,6 +333,11 @@ input[value="CONFIRM"] {
 .detail{
 	display: inline;
 	background: url(./btn_img/btn_detail.png) center center no-repeat;
+}
+
+.look_cart{
+	display: inline;
+	background: url(./btn_img/cart.png) center center no-repeat;
 }
 .change {
 	display: inline;

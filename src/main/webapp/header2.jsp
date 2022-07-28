@@ -210,8 +210,10 @@ a {
         <li><a href="#">LOGIN</a></li><!-- リンク先未定-->
         <li><form action="/HAYNTH/CartServlet" method="post">
 		        <img src="./css/btn_img/cart.png" >
-			        	<% if(totalQuant != null || totalQuant.getQuantity() == 0){%><!--カートボタンを押したら-->
-			        	<%= totalQuant.getQuantity() %>
+			        	<% if(totalQuant != null){%>
+			        		<% if(totalQuant.getQuantity() > 0){%><!--カートボタンを押したら-->
+			        			<%= totalQuant.getQuantity() %>
+			        		<%} %>
 			        	<%} %>
 		      </form> 
         </li>

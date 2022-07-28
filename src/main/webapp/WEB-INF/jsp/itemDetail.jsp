@@ -18,7 +18,7 @@ Key Jbk = (Key) request.getAttribute("Jbk");
 </head>
 <body>
 <div class="headerearea">
-<jsp:include page="/header2.jsp"/>
+<jsp:include page="/header.jsp"/>
 </div>
 
 <% for(Item c : ctgList) {%>
@@ -37,34 +37,38 @@ Key Jbk = (Key) request.getAttribute("Jbk");
 		</div>
 	</div>
 		<div class="item_con_price_wrap">
-			<div class="item_con_explan_wrap">
-			<p><%= c.getExplanation() %></p>
-			</div>
-			<div class="item_con_price">
-			<p><%= c.getPrice() %>円</p>
-			</div>
-			<div class="item_con_quant">
-			<% if(c.getQuantity() > 0){%>
-			<p><input type="number" name="itemPrice" min="1" max="<%= c.getQuantity() %>" value="1"class=""></p>
-			<p>Stock:<%= c.getQuantity() %></p>
-			<%}%>
-			<% if(c.getQuantity() == 0){%>
-			<p>Sold Out!</p>
-			<%}%>
-			</div>
-			<div class="item_con_name">
-			</div>
-			<div class="item_con_littletotal">
-			<p>Category：<%= c.getCategory() %></p>
-			</div>
-			<% if(c.getQuantity() > 0){%>
-			<div class="item_ctg_confirm">
-				<form action="/HAYNTH/CartServlet2" method="get" class="" style="text-align=light">
-					<input type ="hidden" value=<%= c.getQuantity() %> name="quantity">
-					<button type="submit" value=<%= c.getItem_id() %> name="item_id" class="in_cart"></button >
-				</form>
-			</div>
-			<%}%>
+			<form action="/HAYNTH/CartServlet2" method="get" class="" style="text-align=light">
+				<div class="item_con_explan_wrap">
+				<p><%= c.getExplanation() %></p>
+				</div>
+				<div class="item_con_price">
+				<p><%= c.getPrice() %>円</p>
+				</div>
+				<div class="item_con_quant">
+				
+				<% if(c.getQuantity() > 0){%>
+				<p><input type="number" name="quantity" min="1" max="<%= c.getQuantity() %>" value="1"class=""></p> <!-- ここの値を飛ばしている -->
+				<p>Stock:<%= c.getQuantity() %></p>
+				<%}%>
+				<% if(c.getQuantity() == 0){%>
+				<p>Sold Out!</p>
+				<%}%>
+				</div>
+				<div class="item_con_name">
+				</div>
+				<div class="item_con_littletotal">
+				<p>Category：<%= c.getCategory() %></p>
+				</div>
+				<% if(c.getQuantity() > 0){%>
+				<div class="item_ctg_confirm">
+					<input type="hidden" value=<%= c.getItem_id() %> name="item_id" >
+					<button type="submit" value=<%= c.getItem_id() %> name="ctg"class="in_cart" ></button >
+				</div>
+				<%}%>
+				<div class="item_ctg_confirm">
+						<button type="submit" value=<%= c.getItem_id() %> name="buy"class="buy" ></button >
+				</div>
+			</form>
 		</div>
 </div>
 

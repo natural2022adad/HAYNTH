@@ -24,6 +24,19 @@ public class Item {
 		this.quantity=quantity;
 		this.item_id=item_id;
 	}
+	public Item(String category,String name,String explanation,String image_path,String image_path2,String image_path3,String keyword,int price,int quantity,
+			int item_id) {
+		this.category =category;
+		this.name=name;
+		this.explanation=explanation;
+		this.image_path=image_path;
+		this.image_path2=image_path2;
+		this.image_path3=image_path3;
+		
+		this.price=price;
+		this.quantity=quantity;
+		this.item_id=item_id;
+	}
 	public Item(String category,String name,String explanation,String image_path,int price,int quantity,
 			int item_id) {
 		this.category =category;

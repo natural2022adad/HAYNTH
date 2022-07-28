@@ -35,7 +35,7 @@ public class CategoryDAO {
 			String word = Jbk.getKey();
 			int itemId = Jbk.getNumKey();
 			String sql = null;
-			System.out.println(word);
+			System.out.println("String word" + word+"int itemId"+itemId);
 			if(word != null) {
 				if(word.equals("allitem")) {
 					sql = "SELECT * FROM `item` ";
@@ -52,17 +52,19 @@ public class CategoryDAO {
 			
 			//結果表に格納されたレコードの内容をインスタンスに設定し、ArrayListインスタンスに追加
 			while (rs.next()) {
+				int item_id = rs.getInt("ITEM_ID");
 				System.out.println("while (rs.next())内");
 				String category = rs.getString("CATEGORY");
 				String name = rs.getString("NAME");
 				String explanation = rs.getString("EXPLANATION");
+				int price= rs.getInt("PRICE");
+				int quantity = rs.getInt("QUANTITY");
 				String image_path = rs.getString("IMAGE_PATH");
 				String image_path2 = rs.getString("IMAGE_PATH2");
 				String image_path3 = rs.getString("IMAGE_PATH3");
 				System.out.println(image_path);
-				int price= rs.getInt("PRICE");
-				int quantity = rs.getInt("QUANTITY");
-				int item_id = rs.getInt("ITEM_ID");
+				
+		
 				Item item = new Item(category, name, explanation, image_path, image_path2, image_path3,price, quantity, item_id);
 				ctgList.add(item);
 				System.out.println("ArrayListに追加");
